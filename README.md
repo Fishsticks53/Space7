@@ -59,7 +59,15 @@ npm run ios
 
 ### Backend
 
-Debug builds call a local backend at `http://localhost:5000` (`http://10.0.2.2:5000` from the Android emulator). Release builds call `https://space7backend.onrender.com`. Both are set in [`src/config.ts`](src/config.ts). See the backend repo for running it locally with Docker.
+Debug builds call a local backend at `http://localhost:5000`; release builds call `https://space7backend.onrender.com`. Both are set in [`src/config.ts`](src/config.ts). See the backend repo for running it locally with Docker.
+
+On Android (emulator or a phone over USB), forward the port so the device's `localhost` reaches your computer:
+
+```sh
+adb reverse tcp:5000 tcp:5000
+```
+
+To try the app on a phone without running the backend, install a release build, which uses the deployed API: `npm run android -- --mode release`.
 
 ## Checks
 
