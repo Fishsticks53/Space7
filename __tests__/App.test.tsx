@@ -1,13 +1,8 @@
-/**
- * @format
- */
-
 import React from 'react';
-import ReactTestRenderer from 'react-test-renderer';
+import { render, screen } from '@testing-library/react-native';
 import App from '../App';
 
-test('renders correctly', async () => {
-  await ReactTestRenderer.act(() => {
-    ReactTestRenderer.create(<App />);
-  });
+test('shows the sign in screen when there is no saved session', async () => {
+  await render(<App />);
+  expect(await screen.findByText('Sign in')).toBeTruthy();
 });
