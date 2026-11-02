@@ -80,7 +80,7 @@ export interface Profile extends UserSummary {
   stats: ProfileStats;
 }
 
-export interface PublicProfile extends Profile {
+export interface PublicProfile extends Omit<Profile, 'email'> {
   publicSpaces: Pick<
     Space,
     'space_id' | 'title' | 'description' | 'created_at'

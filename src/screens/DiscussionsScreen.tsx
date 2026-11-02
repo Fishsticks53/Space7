@@ -33,7 +33,7 @@ export function DiscussionsScreen() {
   useRefreshOnFocus(spaces.refresh);
 
   return (
-    <Screen>
+    <Screen edges={['top']}>
       <Header
         title="My discussions"
         color={colors.pink}

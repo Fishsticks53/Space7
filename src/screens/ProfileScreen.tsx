@@ -55,14 +55,14 @@ export function ProfileScreen() {
 
   if (data.loading) {
     return (
-      <Screen>
+      <Screen edges={['top']}>
         <Loading />
       </Screen>
     );
   }
   if (data.error || !data.data) {
     return (
-      <Screen>
+      <Screen edges={['top']}>
         <ErrorState
           error={data.error ?? new Error('Could not load profile')}
           onRetry={data.refresh}
@@ -75,7 +75,7 @@ export function ProfileScreen() {
   const created = spaces.filter(s => s.role === 'creator');
 
   return (
-    <Screen>
+    <Screen edges={['top']}>
       <Header
         title={`@${profile.username}`}
         color={colors.yellow}

@@ -92,15 +92,25 @@ android {
             keyAlias 'androiddebugkey'
             keyPassword 'android'
         }
+        // Release keys come from ~/.gradle/gradle.properties or ORG_GRADLE_PROJECT_*
+        // environment variables, never from the repository.
+        if (project.hasProperty('SPACE7_UPLOAD_STORE_FILE')) {
+            release {
+                storeFile file(SPACE7_UPLOAD_STORE_FILE)
+                storePassword SPACE7_UPLOAD_STORE_PASSWORD
+                keyAlias SPACE7_UPLOAD_KEY_ALIAS
+                keyPassword SPACE7_UPLOAD_KEY_PASSWORD
+            }
+        }
     }
     buildTypes {
         debug {
             signingConfig signingConfigs.debug
         }
         release {
-            // Caution! In production, you need to generate your own keystore file.
-            // see https://reactnative.dev/docs/signed-apk-android.
-            signingConfig signingConfigs.debug
+            // Falls back to the debug key so local release builds still run;
+            // store uploads must be built with the SPACE7_UPLOAD_* properties set.
+            signingConfig signingConfigs.findByName('release') ?: signingConfigs.debug
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
         }

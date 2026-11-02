@@ -6,7 +6,8 @@ import { colors } from '../theme';
 export function Screen({
   children,
   style,
-  edges = ['top'],
+  // Tab screens pass ['top']; the tab bar already pads the bottom.
+  edges = ['top', 'bottom'],
 }: {
   children: React.ReactNode;
   style?: ViewStyle;

@@ -78,7 +78,7 @@ export function HomeScreen() {
   );
 
   return (
-    <Screen>
+    <Screen edges={['top']}>
       <View style={styles.top}>
         <View style={styles.topRow}>
           <Logo />
